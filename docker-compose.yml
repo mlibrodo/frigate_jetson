@@ -1,0 +1,33 @@
+services:
+  frigate:
+    container_name: frigate
+    image: ghcr.io/blakeblackshear/frigate:stable-tensorrt-jp6
+    restart: unless-stopped
+    runtime: nvidia
+    shm_size: "256mb"
+    ports:
+      - "5000:5000"
+      - "8554:8554"
+      - "8555:8555/tcp"
+      - "8555:8555/udp"
+    volumes:
+      - ./config:/config
+      - ./storage:/media/frigate
+    environment:
+      - TZ=America/Los_Angeles
+
+ 
+    devices:
+      - /dev/video0:/dev/video0  # logitecth HD Pro Webcam C920
+
+  # optional: ONLY if you want to manage roboflow via compose too
+  # inference-server:
+  #   image: roboflow/roboflow-inference-server-jetson-6.2.0:latest
+  #   container_name: inference-server
+  #   restart: unless-stopped
+  #   runtime: nvidia
+  #   ports:
+  #     - "9001:9001"
+  #   environment:
+  #     - ROBOFLOW_API_KEY=${ROBOFLOW_API_KEY}
+
