@@ -1,1 +1,39 @@
+# Frigate database
+frigate.db
+frigate.db-*
+*.db
+*.db-shm
+*.db-wal
+*.vacuum
+
+# Media
+media/
+recordings/
+clips/
+snapshots/
+exports/
 storage*
+
+# Logs
+*.log
+logs/
+
+# Cache / temp
+cache/
+tmp/
+*.tmp
+
+# Model / hardware artifacts
+models/
+*.engine
+*.onnx.cache
+
+# OS junk
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.env
+.venv/
+
