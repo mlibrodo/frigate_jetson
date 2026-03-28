@@ -1,0 +1,20 @@
+1. following instructions here:https://inference.roboflow.com/install/jetson/#prerequisites
+https://inference.roboflow.com/install/jetson/#prerequisiteshttps://inference.roboflow.com/install/jetson/#prerequisites
+
+
+
+jetpack 6.2
+
+sudo vim /etc/docker/daemon.json
+
+{
+  "default-runtime": "nvidia",
+  "runtimes": {
+    "nvidia": {
+      "path": "nvidia-container-runtime",
+      "runtimeArgs": []
+    }
+  }
+}
+
+
