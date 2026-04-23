@@ -103,3 +103,72 @@ inference infer -i ~/Downloads/ember-test.jpg \
 
 
 ```
+
+
+Setting up jetson as a wifi hotspot so that we can connect the camera
+
+```
+michael@michael-desktop:~$ nmcli dev wifi hotspot \
+  ifname wlP1p1s0 \
+  ssid WildfireNet \
+  password StrongPass123
+Error: Failed to setup a Wi-Fi hotspot: Not authorized to control networking.
+michael@michael-desktop:~$ sudo nmcli dev wifi hotspot   ifname wlP1p1s0   ssid WildfireNet   password StrongPass123
+[sudo] password for michael:
+Device 'wlP1p1s0' successfully activated with '6200d275-4b0d-4b79-8192-6d2f6d4d4e75'.
+Hint: "nmcli dev wifi show-password" shows the Wi-Fi name and password.
+```
+
+
+## HEADLESS
+# connect jetson -> usbc -> laptop
+```OSX
+01:34:24:ltm-1920:~:$ssh -4 -o IPQoS=none michael@192.168.55.1
+michael@192.168.55.1's password:
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.148-tegra aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+This system has been minimized by removing packages and content that are
+not required on a system that users do not log into.
+
+To restore this content, you can run the 'unminimize' command.
+
+Expanded Security Maintenance for Applications is not enabled.
+
+211 updates can be applied immediately.
+181 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+39 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+Last login: Thu Apr 23 08:53:10 2026 from 192.168.55.100
+
+```
+
+
+06  sudo nmcli dev wifi connect "wc-public"
+  607  iw dev
+  608  iw list | grep -A15 "valid interface combinations"
+  609  iw list
+  610  nmcli dev wifi list
+  611  ip addr show wlP1p1s0
+  612  nmcli connection down "wc-public"
+  613  sudo nmcli connection down "wc-public"
+  614  touch wifisetup
+  615  sudo nmcli dev wifi hotspot   ifname wlP1p1s0   ssid WildfireNet   password StrongPass123
+  616  ip addr show wlP1p1s0
+  617  ip neigh
+  618  sudo iw dev wlP1p1s0 station dump
+  619  ip neigh
+  620  nc -vz 10.42.0.142 554
+  621  ip neigh
+  622  nc -vz 10.42.0.142 554
+  623  ip neigh
+  624  ping 10.42.0.142
+  625  nc -vz 10.42.0.142 554
+  626  ping 10.42.0.142
+  627  history
